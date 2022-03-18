@@ -23,17 +23,17 @@ public class UserServiceImpl implements UserService{
 		System.out.println(us);
 		return null;
 		*/
-		/*User us = userDao.findByLoginAndPasswd(user.getLogin(),user.getPassword());
-		if(user.getLogin()==null || user.getPassword()==null) {
-			throw new UserNoteFoundException("Authentication error");
-		}
-		return null;*/
 		User us = userDao.findByLoginAndPasswd(user.getLogin(),user.getPassword());
+		if((us.getLogin()==null || us.getPassword()==null) && us.getLoginAttempts()>3) {
+			throw new UserNoteFoundException("error: You have reached 3 failed authentication attempts, your account will be disabled");
+		}
+		return null;
+		/*User us = userDao.findByLoginAndPasswd(user.getLogin(),user.getPassword());
 		
 		if(us.isEnabled()) {
 			throw new UserNoteFoundException("User disabled");
 		}
-		return null;
+		return null;*/
 		}
 		
 		}
