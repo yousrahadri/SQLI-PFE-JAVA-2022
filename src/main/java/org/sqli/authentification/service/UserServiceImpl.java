@@ -10,11 +10,16 @@ import org.sqli.authentification.entitie.Group;
 import org.sqli.authentification.entitie.User;
 import org.sqli.authentification.service.Exception.UserNoteFoundException;
 
+import antlr.collections.List;
+
 @Service
 public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserDAO userDao;
+	
+	@Autowired 
+	private GroupDao groupDao;
 
 	@Override
 	public User verifyAuthentification(User user)  {
@@ -35,6 +40,16 @@ public class UserServiceImpl implements UserService{
 		}
 		return null;*/
 		}
+
+	@Override
+	public User createUser(User user) {
+		List <User> us  = (User) userDao.findByLogin(user.getLogin());
+		if(us.sizeof())
+             {
+			userDao.save(us);
+		}
+		return null;
+	}
 		
 		}
 		
