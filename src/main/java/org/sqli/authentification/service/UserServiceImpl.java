@@ -18,16 +18,21 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User verifyAuthentification(User user)  {
-		
+		/*
 		User us = userDao.findByLoginAndPasswd(user.getLogin(),user.getPassword());
 		System.out.println(us);
 		return null;
-		
-		
+		*/
+		User us = userDao.findByLoginAndPasswd(user.getLogin(),user.getPassword());
+		if(user.getLogin()==null || user.getPassword()==null) {
+			throw new UserNoteFoundException("this user does not exist !!");
+		}
+		return null;
+		}
 		
 		}
 		
-	}
+	
 	
 	
 	

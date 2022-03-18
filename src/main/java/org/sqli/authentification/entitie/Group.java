@@ -2,6 +2,7 @@ package org.sqli.authentification.entitie;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,7 +16,7 @@ public class Group {
 	
 	private long id;
 	
-	
+	@Column
 	private String name;
     private Set<User> users;
 	public long getId() {
