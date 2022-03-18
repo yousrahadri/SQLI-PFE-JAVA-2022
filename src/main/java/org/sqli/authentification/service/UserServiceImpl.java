@@ -25,13 +25,13 @@ public class UserServiceImpl implements UserService{
 		*/
 		/*User us = userDao.findByLoginAndPasswd(user.getLogin(),user.getPassword());
 		if(user.getLogin()==null || user.getPassword()==null) {
-			throw new UserNoteFoundException("this user does not exist !!");
+			throw new UserNoteFoundException("Authentication error");
 		}
 		return null;*/
 		User us = userDao.findByLoginAndPasswd(user.getLogin(),user.getPassword());
 		
 		if(us.isEnabled()) {
-			throw new UserNoteFoundException("the user's account is enabled !!!");
+			throw new UserNoteFoundException("User disabled");
 		}
 		return null;
 		}
